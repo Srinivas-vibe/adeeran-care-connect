@@ -3,16 +3,10 @@ import { motion } from 'framer-motion';
 import { FaPhoneAlt, FaWhatsapp, FaCheckCircle, FaClock, FaShieldAlt, FaUserMd } from 'react-icons/fa';
 import heroImage from '@/assets/hero-nurse.jpg';
 import SectionReveal from '@/components/SectionReveal';
-import ServiceCard from '@/components/ServiceCard';
-import TestimonialCard from '@/components/TestimonialCard';
+import ServiceImageCard from '@/components/ServiceImageCard';
+import GoogleReviewCard from '@/components/GoogleReviewCard';
+import AnimatedCounter from '@/components/AnimatedCounter';
 import { services, nursingShifts } from '@/data/services';
-
-const stats = [
-  { label: 'Happy Patients', value: '2000+' },
-  { label: 'Trained Nurses', value: '100+' },
-  { label: 'Years Experience', value: '10+' },
-  { label: 'Cities Covered', value: '3' },
-];
 
 const whyUs = [
   { icon: FaUserMd, title: 'Experienced Nurses', desc: 'Highly qualified and certified healthcare professionals.' },
@@ -22,9 +16,9 @@ const whyUs = [
 ];
 
 const testimonials = [
-  { name: 'Ramesh K.', text: 'Adeeran Home Care provided excellent nursing support for my father. The nurses were professional and caring.', rating: 5, location: 'Chennai' },
-  { name: 'Priya S.', text: 'Outstanding baby care service! The nurse was very experienced and helped us tremendously during the first month.', rating: 5, location: 'Pondicherry' },
-  { name: 'Anand M.', text: 'The ICU home care service saved us so much hassle. Professional setup and monitoring at home.', rating: 5, location: 'Villupuram' },
+  { name: 'Ramesh Kumar', text: 'Adeeran Home Care provided excellent nursing support for my father. The nurses were professional and very caring. Highly recommended for anyone needing home healthcare!', rating: 5, location: 'Chennai', timeAgo: '2 weeks ago' },
+  { name: 'Priya Sundarajan', text: 'Outstanding baby care service! The nurse was very experienced and helped us tremendously during the first month after delivery. Thank you, Adeeran!', rating: 5, location: 'Pondicherry', timeAgo: '1 month ago' },
+  { name: 'Anand Murugan', text: 'The ICU home care service saved us so much hassle. Professional setup and monitoring at home. The team was available 24/7 for any emergency.', rating: 5, location: 'Villupuram', timeAgo: '3 weeks ago' },
 ];
 
 const HomePage = () => {
@@ -96,27 +90,11 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="border-b border-border bg-card py-8">
-        <div className="container mx-auto grid grid-cols-2 gap-6 px-4 md:grid-cols-4">
-          {stats.map((s, i) => (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="text-center"
-            >
-              <p className="text-3xl font-bold text-primary">{s.value}</p>
-              <p className="text-sm text-muted-foreground">{s.label}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+      {/* Animated Counter */}
+      <AnimatedCounter />
 
       {/* Services */}
-      <section className="bg-section-alt py-16 lg:py-24">
+      <section className="bg-section-alt pt-24 pb-16 lg:pb-24">
         <div className="container mx-auto px-4">
           <SectionReveal>
             <div className="mb-12 text-center">
@@ -127,9 +105,9 @@ const HomePage = () => {
               </p>
             </div>
           </SectionReveal>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {services.slice(0, 12).map((s, i) => (
-              <ServiceCard key={s.id} service={s} index={i} />
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {services.slice(0, 9).map((s, i) => (
+              <ServiceImageCard key={s.id} service={s} index={i} />
             ))}
           </div>
           <div className="mt-10 text-center">
@@ -200,18 +178,21 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Testimonials preview */}
+      {/* Google Reviews */}
       <section className="py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <SectionReveal>
             <div className="mb-12 text-center">
-              <span className="mb-2 inline-block text-sm font-semibold uppercase tracking-wider text-primary">Testimonials</span>
+              <span className="mb-2 inline-block text-sm font-semibold uppercase tracking-wider text-primary">Reviews</span>
               <h2 className="text-3xl font-bold text-foreground lg:text-4xl">What Our Patients Say</h2>
+              <p className="mx-auto mt-3 max-w-md text-muted-foreground">
+                Trusted by 2000+ families across Tamil Nadu
+              </p>
             </div>
           </SectionReveal>
           <div className="grid gap-6 md:grid-cols-3">
             {testimonials.map((t, i) => (
-              <TestimonialCard key={t.name} {...t} index={i} />
+              <GoogleReviewCard key={t.name} {...t} index={i} />
             ))}
           </div>
           <div className="mt-10 text-center">
