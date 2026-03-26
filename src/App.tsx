@@ -20,7 +20,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/adeeran-care-connect">
         <div className="flex min-h-screen flex-col">
           <Navbar />
           <main className="flex-1">

@@ -21,6 +21,21 @@
 
   <body>
     <div id="root"></div>
+    <!-- GitHub Pages SPA redirect: restore path from 404.html redirect -->
+    <script>
+      (function() {
+        var redirect = sessionStorage.getItem("redirect");
+        if (redirect) {
+          sessionStorage.removeItem("redirect");
+          // The redirect value is the path after the repo name, restore it
+          var base = "/adeeran-care-connect";
+          var path = redirect.replace(base, "");
+          if (path && history.replaceState) {
+            history.replaceState(null, null, base + (path.startsWith("/") ? path : "/" + path));
+          }
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
